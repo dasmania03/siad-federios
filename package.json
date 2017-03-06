@@ -1,0 +1,38 @@
+{
+  "name": "siadfederios",
+  "version": "1.0.1",
+  "description": "Sistema Integrado de Administracion Deportiva para la Federacion Deportia de Los Rios",
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dasmania03/siad-federios.git"
+  },
+  "author": "Diego Suarez M. <dasmania03@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ed-grid": "^2.1.1"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "jquery": "^3.1.0",
+    "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.2",
+    "lodash": "^4.16.2",
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3"
+  },
+  "bugs": {
+    "url": "https://github.com/dasmania03/siad-federios/issues"
+  },
+  "homepage": "https://github.com/dasmania03/siad-federios#readme",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  }
+}

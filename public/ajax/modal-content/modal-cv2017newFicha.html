@@ -1,0 +1,330 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title">Registro de Ficha Única</h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form id="formRegister" class="smart-form" novalidate="novalidate">
+                <header>
+                    Datos del Deportista > Información Personal
+                </header>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-address-card"></i>
+                                <input type="text" name="identification" id="identification" placeholder="Cédula">
+                                <p class="note">
+                                    Documento de Identificación
+                                </p>
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-calendar"></i>
+                                <input type="text" name='birthdate' id='birthdate' class="form-control">
+                                <p class="note">
+                                    Fecha de Nacimiento dd/mm/aaaa
+                                </p>
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="lname" placeholder="Apellidos completos">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="fname" placeholder="Nombres completos">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="sex">
+                                    <option value="0" selected="" disabled="">Sexo</option>
+                                    <option value="1">Hombre</option>
+                                    <option value="2">Mujer</option>
+                                </select> <i></i> </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="type_disability">
+                                    <option value="0" selected="" disabled="">Tiene discapacidad?</option>
+                                    <option value="F">Física</option>
+                                    <option value="I">Intelectual</option>
+                                    <option value="V">Visual</option>
+                                    <option value="A">Auditiva</option>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="size">
+                                    <option value="0" selected="" disabled="">Talla</option>
+                                    <option value="24">24</option>
+                                    <option value="26">26</option>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </fieldset>
+
+                <header>
+                    Datos del Deportista > Datos de contacto
+                </header>
+                <fieldset>
+                    <section>
+                        <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
+                            <input type="text" name="address" placeholder="Dirección domiciliaria">
+                        </label>
+                    </section>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="email" name="email" placeholder="E-mail">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                <input type="tel" id="phone" name="phone" placeholder="Teléfono" >
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+
+                <header>
+                    Datos del Representante > Contacto y Facturación
+                </header>
+                <fieldset>
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-address-card"></i>
+                                <input type="text" name="agent_identification" id="agent_identification" placeholder="Cédula">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="agent_lname" placeholder="Apellidos completos">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                <input type="text" name="agent_fname" placeholder="Nombres completos">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+                                <input type="email" name="agent_email" placeholder="E-mail">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                <input type="tel" id="agent_phone" name="agent_phone" placeholder="Teléfono">
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <button type="button" id="cancelar" class="btn btn-default">
+                        Cancelar
+                    </button>
+                </footer>
+            </form>
+
+            <script type="text/javascript">
+
+                var errorClass = 'invalid';
+                var errorElement = 'em';
+
+                // Load form valisation dependency
+                loadScript("js/plugin/jquery-form/jquery-form.min.js", $formRegister);
+                // Metodo para validar cedula
+                jQuery.validator.addMethod("isValidCI", function(value, element) {
+                    cedula = value;
+                    array = cedula.split("");
+                    num = array.length;
+                    if(num == 10) {
+                        total = 0;
+                        digito = (array[9]*1);
+                        for(i=0; i < (num-1); i++) {
+                            mult = 0;
+                            if((i%2) != 0) {
+                                total = total + (array[i] * 1);
+                            }
+                            else {
+                                mult = array[i] * 2;
+                                if(mult > 9)
+                                    total = total + (mult - 9);
+                                else
+                                    total = total + mult;
+                            }
+                        }
+                        decena = total / 10;
+                        decena = Math.floor(decena);
+                        decena = (decena + 1) * 10;
+                        final = (decena - total);
+                        if((final == 10 && digito == 0) || (final == digito)) {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                }, "Cedula no valida");
+                // Validaciones del formulario
+                var $formRegister = $("#formRegister").validate({
+                    errorClass		: errorClass,
+                    errorElement	: errorElement,
+                    highlight: function(element) {
+                        $(element).parent().removeClass('state-success').addClass("state-error");
+                        $(element).removeClass('valid');
+                    },
+                    unhighlight: function(element) {
+                        $(element).parent().removeClass("state-error").addClass('state-success');
+                        $(element).addClass('valid');
+                    },
+
+                    // Rules for form validation
+                    rules : {
+                        identification: {
+                            required : true,
+                            digits : true,
+                            isValidCI : true
+                        },
+                        birthdate: {
+                            required : true,
+                            date : true
+                        },
+                        fname : {
+                            required : true
+                        },
+                        lname : {
+                            required : true
+                        },
+                        sex: {
+                            required : true
+                        },
+                        size: {
+                            required : true
+                        },
+                        address : {
+                            required : true
+                        },
+                        email : {
+                            email : true
+                        },
+                        agent_identification : {
+                            required : true,
+                            digits : true,
+                            isValidCI : true
+                        },
+                        agent_fname : {
+                            required : true
+                        },
+                        agent_lname : {
+                            required : true
+                        },
+                        agent_email : {
+                            required : true,
+                            email : true
+                        },
+                        agent_phone : {
+                            required : true
+                        }
+                    },
+
+                    // Messages for form validation
+                    messages : {
+                        identification: {
+                            required : 'Identificación requerida',
+                            digits : 'Solo números por favor',
+                            isValidCI: 'Número de Cédula no Válido'
+                        },
+                        birthdate: {
+                            required : 'Por favor ingrese la Fecha de Nacimiento',
+                            date : 'Ingrese la Fecha de Nacimiento correcta'
+                        },
+                        fname : {
+                            required : 'Por favor ingrese los Nombres completos'
+                        },
+                        lname : {
+                            required : 'Por favor ingrese los Apellidos completos'
+                        },
+                        sex: {
+                            required : 'Seleccione el Sexo'
+                        },
+                        size: {
+                            required : 'Seleccione una Talla'
+                        },
+                        address : {
+                            required : 'Por favor ingrese su Dirección completa'
+                        },
+                        email : {
+                            email : 'Por favor ingrese un email VALIDO'
+                        },
+                        agent_identification : {
+                            required : 'Identificación requerida',
+                            digits : 'Solo números por favor',
+                            isValidCI: 'Número de Cédula no Válido'
+                        },
+                        agent_fname : {
+                            required : 'Por favor ingrese los Nombres completos'
+                        },
+                        agent_lname : {
+                            required : 'Por favor ingrese los Apellidos completos'
+                        },
+                        agent_email : {
+                            required : 'Por favor ingrese un Email',
+                            email : 'Por favor ingrese un email VALIDO'
+                        },
+                        agent_phone : {
+                            required : 'Por favor ingrese un número de Teléfono'
+                        }
+                    },
+
+                    // Do not change code below
+                    errorPlacement : function(error, element) {
+                        error.insertAfter(element.parent());
+                    }
+                });
+
+                // Enmascaramiento de inputs
+                $("#identification").mask("9999999999");
+                $("#agent_identification").mask("9999999999");
+                $("#birthdate").mask("99/99/9999");
+                $("#phone").mask("(999) 999-9999");
+                $("#agent_phone").mask("(999) 999-9999");
+
+                $("#cancelar").click(function () {
+                    JS_cerrarModal("#remoteModal");
+                });
+
+                function JS_cerrarModal(j){
+                    $(""+j+"").modal('hide');
+                    $(""+j+"").html("&nbsp;");
+                }
+            </script>
+        </div>
+    </div>
+</div>
